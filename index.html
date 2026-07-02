@@ -407,7 +407,7 @@ const products = [
   { cod: "OP-014", nombre: "Arete Abanico Dorado", categoria: "Aretes", precio: "L. 185", material: "Acero", img: `images/OP-014.jpg`, disponible: true },
   { cod: "OP-015", nombre: "Huggie Liso Dorado", categoria: "Aretes", precio: "L. 315", material: "Laminado", img: `images/OP-015.jpg`, disponible: true },
   { cod: "OP-016", nombre: "Arete Corazón Plateado", categoria: "Aretes", precio: "L. 400", material: "Laminado", img: `images/OP-016.jpg`, disponible: true },
-  { cod: "OP-017", nombre: "Arete Cubo Zirconia", categoria: "Aretes", precio: "L. 375", material: "Laminado", img: `images/OP-017.jpg`, disponible: true },
+  { cod: "OP-017", nombre: "Arete Cubo Zirconia", categoria: "Aretes", precio: "L. 375", material: "Laminado", img: `images/OP-017.jpg`, disponible: false },
   { cod: "OP-018", nombre: "Arete Trébol Dorado", categoria: "Aretes", precio: "L. 375", material: "Acero", img: `images/OP-018.jpg`, disponible: false },
   { cod: "OP-019", nombre: "Cuff Perlas Dorado", categoria: "Aretes", precio: "L. 285", material: "Acero", img: `images/OP-019.jpg`, disponible: true },
   { cod: "OP-020", nombre: "Cuff Hoja Zirconia", categoria: "Aretes", precio: "L. 285", material: "Laminado", img: `images/OP-020.jpg`, disponible: true },
@@ -430,7 +430,7 @@ const products = [
   { cod: "OP-037", nombre: "Anillo Perla Zirconia", categoria: "Anillos", precio: "L. 215", material: "Laminado", img: `images/OP-037.jpg`, disponible: true },
   { cod: "OP-038", nombre: "Anillo Bolas Zirconia", categoria: "Anillos", precio: "L. 250", material: "Laminado", img: `images/OP-038.jpg`, disponible: false },
   { cod: "OP-039", nombre: "Anillo Chunky Croissant", categoria: "Anillos", precio: "L. 285", material: "Laminado", img: `images/OP-039.jpg`, disponible: false },
-  { cod: "OP-040", nombre: "Anillo Bicolor", categoria: "Anillos", precio: "L. 340", material: "Laminado", img: `images/OP-040.jpg`, disponible: true },
+  { cod: "OP-040", nombre: "Anillo Bicolor", categoria: "Anillos", precio: "L. 340", material: "Laminado", img: `images/OP-040.jpg`, disponible: false },
   { cod: "OP-041", nombre: "Anillo Líneas Cruzadas", categoria: "Anillos", precio: "L. 315", material: "Laminado", img: `images/OP-041.jpg`, disponible: false },
   { cod: "OP-042", nombre: "Cadena Serpiente", categoria: "Cadenas", precio: "L. 360", material: "Acero", img: `images/OP-042.jpg`, disponible: true },
   { cod: "OP-043", nombre: "Dije Inicial", categoria: "Dijes", precio: "L. 67", material: "Laminado", img: `images/OP-043.jpg`, disponible: true }
@@ -463,19 +463,17 @@ function renderGrid() {
     const precioHtml = p.precio === "Consultar"
       ? `<span class="card-price consultar">Consultar</span>`
       : `<span class="card-price">${p.precio}</span>`;
-    const badgeHtml = agotado ? `<div class="badge-agotado">Agotado</div>` : '';
     const btnHtml = agotado
       ? `<a class="agotado-cta" href="${whatsappAgotadoLink(p.nombre, p.cod)}" target="_blank">Consultar disponibilidad</a>`
       : `<a class="card-ask" href="${whatsappLink(p.nombre, p.precio, p.cod)}" target="_blank">Pedir &rarr;</a>`;
     const clickImg = `onclick="openModal(${idx})"`;
     const clickName = `onclick="openModal(${idx})"`;
-    const zoomHint = agotado ? '' : `<div class="card-zoom-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg></div>`;
+    const zoomHint = `<div class="card-zoom-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg></div>`;
     const cartIconSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>';
     const cartBtnHtml = agotado ? '' : `<button class="card-cart-btn" id="ccb-${idx}" onclick="addToCart(${idx})">${cartIconSvg} Agregar al carrito</button>`;
-    return `<div class="card${agotado?' agotado':''}">
-      <div class="card-img-wrap" ${clickImg} tabindex="0" role="button" aria-label="${agotado?('Agotado — '+p.nombre):('Ver '+p.nombre)}">
+    return `<div class="card">
+      <div class="card-img-wrap" ${clickImg} tabindex="0" role="button" aria-label="Ver ${p.nombre}">
         ${imgHtml}
-        ${badgeHtml}
         ${zoomHint}
       </div>
       <div class="card-body">
