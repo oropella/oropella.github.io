@@ -471,7 +471,7 @@ function renderGrid() {
     const zoomHint = `<div class="card-zoom-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg></div>`;
     const cartIconSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>';
     const cartBtnHtml = agotado ? '' : `<button class="card-cart-btn" id="ccb-${idx}" onclick="addToCart(${idx})">${cartIconSvg} Agregar al carrito</button>`;
-    return `<div class="card"${agotado?' style="opacity:0.75;filter:grayscale(30%)"':''}>
+    return `<div class="card"${agotado?' style="opacity:0.65;filter:grayscale(50%)"':''}>
       <div class="card-img-wrap" ${clickImg} tabindex="0" role="button" aria-label="Ver ${p.nombre}">
         ${imgHtml}
         ${zoomHint}
